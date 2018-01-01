@@ -4,24 +4,21 @@ var {timeout} = require('../tools/tools.js');
 // 测试
 puppeteer.launch({headless: false}).then(async browser => {
     var page = await browser.newPage()
-    page.setViewport({width: 1200, height: 600})
+    page.setViewport({width: 1400, height: 600})
 
 
     /** 登录 **/
     try {
-        await timeout(1000)
+        // await timeout(1000)
         await page.goto('http://363366a.com/')
         await timeout(1000)
 
         console.log('点击时时彩')
         
-        var shishicai = await page.$('[href=/Home/BET?QU=&tourl=363366a.com/BET2/SSC/LMP?tid=7&gid=10038&mid=10733]')
+        var shishicai = await page.$('#LS-first ~ li ~ li ~ li ~ li ~ li >a ')
         console.log('shishicaibtn',shishicai)
-        debugger
 
         await shishicai.click()
-        
-
 
         var loginPhoneOrEmail = await page.$('[name=username]')
         console.log('loginPhoneOrEmail:', loginPhoneOrEmail);
@@ -37,6 +34,8 @@ puppeteer.launch({headless: false}).then(async browser => {
         var login = await page.$('[name=Submit]')
         await login.click()
       
+        debugger
+        
     } catch (e) {
         console.log(e)
         return
