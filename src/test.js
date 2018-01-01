@@ -11,7 +11,7 @@ puppeteer.launch({headless: false}).then(async browser => {
     try {
         // await timeout(1000)
         await page.goto('http://363366a.com/')
-        await timeout(1000)
+        await timeout(1500)
 
         console.log('点击时时彩')
         
@@ -19,22 +19,22 @@ puppeteer.launch({headless: false}).then(async browser => {
         console.log('shishicaibtn',shishicai)
 
         await shishicai.click()
+        await timeout(1000)
 
-        var loginPhoneOrEmail = await page.$('[name=username]')
+        var loginPhoneOrEmail = await page.$('#Account')
         console.log('loginPhoneOrEmail:', loginPhoneOrEmail);
         await loginPhoneOrEmail.click()
-        var username = await page.type('[name=username]','cc0000', {delay: 20})
+        var username = await page.type('#Account','cc0000', {delay: 20})
         console.log('username',username)
         var password = await page.$('[name=passwd]')
         console.log('password:', password);
         await password.click()
         await page.type('[name=passwd]','6r90ueliw', {delay: 20})
 
-
-        var login = await page.$('[name=Submit]')
-        await login.click()
+        // var login = await page.$('[name=Submit]')
+        // await login.click()
       
-        debugger
+       
         
     } catch (e) {
         console.log(e)
